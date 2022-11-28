@@ -1,2 +1,1 @@
-# adsLab
-Advanced Data Structures Lab
+# Advanced Data Structures Lab
