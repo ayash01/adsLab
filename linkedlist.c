@@ -17,7 +17,7 @@ void main()
     int ch;
     do
     {
-        printf("\nEnter choice:\n1. Insert node at the beginning\n2. Insert node at the end\n3. Insert node in between\n4. Display List\n5. Delete node from the beginning\n6. Delete node from the end\n7. Delete specified node\n\n0: Exit\n");
+        printf("\nEnter choice:\n1. Insert node at the beginning\n2. Insert node at the end\n3. Insert node in between\n4. Delete node from the beginning\n5. Delete node from the end\n6. Delete specified node\n\n4. Display List\n\n0: Exit\n");
         printf("\n-> ");
         scanf("%d", &ch);
         printf("\n");
@@ -33,18 +33,18 @@ void main()
             insertBet();
             break;
         case 4:
+            deleteBeg();
+            break;
+        case 5:
+            deleteEnd();
+            break;
+        case 6:
+            //deleteBet();
+            break;
+        case 7:
             printf("Current List:\n");
             display();
             printf("\n");
-            break;
-        case 5:
-            deleteBeg();
-            break;
-        case 6:
-            deleteEnd();
-            break;
-        case 7:
-            //deleteBet();
             break;
         default:
             printf("\n");

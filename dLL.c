@@ -94,6 +94,13 @@ void insertBet()
 
 void display()
 {
+    struct node *ptr = head;
+
+    while (ptr != NULL)
+    {
+        printf("%d", ptr->data);
+        ptr = ptr->next;
+    }
 }
 
 void deleteBeg()
