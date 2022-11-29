@@ -5,6 +5,7 @@ void display(), insertBeg(), insertEnd(), insertBet(), deleteBeg(), deleteEnd(),
 
 struct node
 {
+    struct node *prev;
     int data;
     struct node *next;
 };
@@ -52,30 +53,57 @@ void main()
     } while (ch != 0);
 }
 
-void insertBeg() {
+void insertBeg()
+{
+    int data;
+    printf("\nEnter data to insert: ");
+    scanf("%d", &data);
 
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+
+    if (ptr == NULL)
+    {
+        printf("\n Overflow!");
+    }
+    else
+    {
+        if (head == NULL)
+        {
+            ptr->next = NULL;
+            ptr->prev = NULL;
+            ptr->data = data;
+        }
+        else{
+            ptr->data = data;
+            ptr->prev = NULL;
+            ptr->next = head;
+            head->prev = ptr;
+            head = ptr;
+        }
+        printf("\n Node Inserted.");
+    }
 }
 
-void insertEnd() {
-
+void insertEnd()
+{
 }
 
-void insertBet() {
-
+void insertBet()
+{
 }
 
-void display() {
-
+void display()
+{
 }
 
-void deleteBeg() {
-
+void deleteBeg()
+{
 }
 
-void deleteEnd() {
-
+void deleteEnd()
+{
 }
 
-void deleteBet() {
-    
+void deleteBet()
+{
 }
