@@ -73,7 +73,8 @@ void insertBeg()
             ptr->prev = NULL;
             ptr->data = data;
         }
-        else{
+        else
+        {
             ptr->data = data;
             ptr->prev = NULL;
             ptr->next = head;
@@ -115,4 +116,4 @@ void deleteBet()
 {
 }
 
-//change
+// change
