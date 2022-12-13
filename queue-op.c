@@ -4,42 +4,6 @@
 
 int front, q[N], i, rear;
 
-void enq(), deq(), topf(), display();
-
-void main()
-{
-	// choice
-	int ch;
-	do
-	{
-		printf("Enter choice:\n1. Enqueue\n2. Dequeue\n3. Top\n4. Display\n0: Exit\n");
-		printf("\n-> ");
-		scanf("%d", &ch);
-		printf("\n");
-		switch (ch)
-		{
-		case 1:
-			enq();
-			printf("\n");
-			break;
-		case 2:
-			deq();
-			printf("\n");
-			break;
-		case 3:
-			topf();
-			printf("\n");
-			break;
-		case 4:
-			display();
-			printf("\n");
-			break;
-		default:
-			printf("\n");
-		}
-	} while (ch != 0);
-}
-
 void enq() {
     int data;
     printf ("Enter data to insert: ");
@@ -88,4 +52,38 @@ void display() {
             printf ("%d ", q[i]);
         }
     }
+}
+
+void main()
+{
+	// choice
+	int ch;
+	do
+	{
+		printf("Enter choice:\n1. Enqueue\n2. Dequeue\n3. Top\n4. Display\n0: Exit\n");
+		printf("\n-> ");
+		scanf("%d", &ch);
+		printf("\n");
+		switch (ch)
+		{
+		case 1:
+			enq();
+			printf("\n");
+			break;
+		case 2:
+			deq();
+			printf("\n");
+			break;
+		case 3:
+			topf();
+			printf("\n");
+			break;
+		case 4:
+			display();
+			printf("\n");
+			break;
+		default:
+			printf("\n");
+		}
+	} while (ch != 0);
 }

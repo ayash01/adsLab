@@ -9,12 +9,52 @@ struct node
 
 struct node *head = NULL;
 
-void insertBeg() {
+void insertBeg()
+{
+    int data;
+    printf("Enter a number to insert : ");
+    scanf("%d", &data);
 
+    struct node *temp = (struct node *)malloc(sizeof(struct node)), *ptr = NULL;
+
+    temp->data = data;
+    temp->next = NULL;
+
+    if (head == NULL)
+    {
+        head = temp;
+        ptr = temp;
+        temp->next = head;
+    }
+    else
+    {
+        temp->next = head;
+        head = temp;
+        ptr->next = temp;
+    }
 }
 
-void insertEnd() {
+void insertEnd()
+{
+    int data;
+	printf("Enter a number to insert : ");
+	scanf("%d",&data);
 
+	struct node *temp = (struct node*)malloc(sizeof(struct node)), *ptr = NULL;
+
+	temp->data = data;
+	temp->next = NULL;
+
+	if(head == NULL){
+		head = temp;
+		ptr = temp;
+		temp->next = head;
+	}
+	else {
+		ptr->next = temp;
+		ptr = temp;
+		ptr->next = head;
+	}
 }
 
 void insertBet()
@@ -46,12 +86,12 @@ void insertBet()
     }
 }
 
-void deleteBeg() {
-
+void deleteBeg()
+{
 }
 
-void deleteEnd() {
-
+void deleteEnd()
+{
 }
 
 void DeleteBet()

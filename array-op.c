@@ -2,7 +2,57 @@
 
 int a[5], n, i, asum;
 
-void display(), maximum(), minimum(), sum(), mean(), count();
+void display()
+{
+	printf("The entered array is: ");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+
+void maximum()
+{
+	int max = 0;
+	for (i = 0; i < n; i++)
+	{
+		if (a[i] > max)
+			max = a[i];
+	}
+	printf("The maximum value is %d.\n", max);
+}
+
+void minimum()
+{
+	int min = a[0];
+	for (i = 0; i < n; i++)
+	{
+		if (a[i] < min)
+			min = a[i];
+	}
+	printf("The minimum value is %d.\n", min);
+}
+
+void sum()
+{
+	asum = 0;
+	for (i = 0; i < n; i++)
+	{
+		asum = asum + a[i];
+	}
+	printf("The sum of elements is %d.\n", asum);
+}
+
+void mean()
+{
+	printf("The mean value is %d.\n", asum / n);
+}
+
+void count()
+{
+	printf("Element count: %d\n", n);
+}
 
 void main()
 {
@@ -55,56 +105,4 @@ void main()
 			printf("\n");
 		}
 	} while (ch != 0);
-}
-
-void display()
-{
-	printf("The entered array is: ");
-	for (int i = 0; i < n; i++)
-	{
-		printf("%d ", a[i]);
-	}
-	printf("\n");
-}
-
-void maximum()
-{
-	int max = 0;
-	for (i = 0; i < n; i++)
-	{
-		if (a[i] > max)
-			max = a[i];
-	}
-	printf("The maximum value is %d.\n", max);
-}
-
-void minimum()
-{
-	int min = a[0];
-	for (i = 0; i < n; i++)
-	{
-		if (a[i] < min)
-			min = a[i];
-	}
-	printf("The minimum value is %d.\n", min);
-}
-
-void sum()
-{
-	asum = 0;
-	for (i = 0; i < n; i++)
-	{
-		asum = asum + a[i];
-	}
-	printf("The sum of elements is %d.\n", asum);
-}
-
-void mean()
-{
-	printf("The mean value is %d.\n", asum / n);
-}
-
-void count()
-{
-	printf("Element count: %d\n", n);
 }
