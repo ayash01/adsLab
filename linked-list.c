@@ -8,9 +8,6 @@ struct node
 };
 
 struct node *head = NULL;
-
-
-
 void insertBeg()
 {
     int data;
@@ -66,18 +63,20 @@ void insertBet()
     temp->data = data;
     temp->next = NULL;
     struct node *ptr = head;
-    if (ptr == NULL) {
+    if (ptr == NULL)
+    {
         temp->next = head;
         head = temp;
     }
-    else {
-        while (ptr->data !=pos) {
+    else
+    {
+        while (ptr->data != pos)
+        {
             ptr = ptr->next;
         }
         temp->next = ptr->next;
         ptr->next = temp;
     }
-
 }
 
 void deleteBeg()
@@ -153,7 +152,7 @@ void main()
             deleteEnd();
             break;
         case 6:
-            //deleteBet();
+            // deleteBet();
             break;
         case 7:
             printf("Current List:\n");
