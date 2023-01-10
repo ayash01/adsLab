@@ -8,38 +8,33 @@ struct node
 };
 
 struct node *head = NULL;
+
 void insertBeg()
 {
     int data;
-    printf("Enter data to insert: ");
+    printf("Enter a number : ");
     scanf("%d", &data);
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
     temp->data = data;
     temp->next = NULL;
 
-    if (head != NULL)
-    {
-        temp->next = head;
-    }
+    temp->next = head;
     head = temp;
 }
 
 void insertEnd()
 {
     int data;
-    printf("Enter data to insert: ");
+    printf("Enter a number : ");
     scanf("%d", &data);
-
     struct node *ptr = head;
     struct node *temp = (struct node *)malloc(sizeof(struct node));
     temp->data = data;
     temp->next = NULL;
 
     if (head == NULL)
-    {
         head = temp;
-    }
     else
     {
         while (ptr->next != NULL)
@@ -60,6 +55,7 @@ void insertBet()
     scanf("%d", &pos);
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
+    
     temp->data = data;
     temp->next = NULL;
     struct node *ptr = head;
@@ -82,6 +78,7 @@ void insertBet()
 void deleteBeg()
 {
     struct node *ptr = head, *temp = head;
+
     if (temp == NULL)
     {
         printf("Underflow\n");
@@ -98,9 +95,7 @@ void deleteEnd()
 {
     struct node *ptr = head, *preptr = head;
     if (ptr == NULL)
-    {
         printf("Underflow\n");
-    }
     else
     {
         while (ptr->next != NULL)
@@ -108,9 +103,47 @@ void deleteEnd()
             preptr = ptr;
             ptr = ptr->next;
         }
+        preptr->next = NULL;
+        free(ptr);
     }
-    preptr->next = NULL;
-    free(ptr);
+}
+
+void deleteNode()
+{
+    int pos, found = -1;
+    printf("Enter element to delete: ");
+    scanf("%d", &pos);
+
+    struct node *ptr = head, *check = head, *temp;
+
+    if (ptr == NULL)
+        printf("Underflow!\n");
+    else
+    {
+        while (check != NULL)
+        {
+            if (check->data == pos)
+            {
+                found = 0;
+            }
+            check = check->next;
+        }
+
+        if (found < 0)
+            printf("%d not in list\n", pos);
+        else
+        {
+
+            while (ptr->data != pos)
+            {
+                temp = ptr;
+                ptr = ptr->next;
+            }
+
+            temp->next = ptr->next;
+            free(ptr);
+        }
+    }
 }
 
 void display()
@@ -152,7 +185,7 @@ void main()
             deleteEnd();
             break;
         case 6:
-            // deleteBet();
+            deleteNode();
             break;
         case 7:
             printf("Current List:\n");
