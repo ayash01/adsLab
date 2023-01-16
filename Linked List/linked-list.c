@@ -56,7 +56,7 @@ void insertBw()
     {
         new->next = current->next;
     }
-    
+
     current->next = new;
 }
 
@@ -95,57 +95,45 @@ void deleteBeg()
 
 void deleteBet()
 {
+    int pos;
+    printf("Enter node to delete: ");
+    scanf("%d", &pos);
 
-    if (head == NULL)
+    node *current = head, *prev = NULL;
+
+    // case if only one node present in the list
+    if (current->next == NULL)
     {
-        printf("Empty List");
+        head = NULL;
+        free(current);
     }
+
+    // case if position is found at the first node
+    else if (current->data == pos)
+    {
+        head = current->next;
+        free(current);
+    }
+
     else
     {
-        int pos;
-        printf("Enter node to delete after:");
-        scanf("%d", &pos);
-
-        node *current = head;
-
-        // case if only one node present in the list
-        if (current->next == NULL)
+        while (current->next != NULL)
         {
-            head = NULL;
-            free(current);
+            prev = current;
+            current = current->next;
         }
 
-        // case if position is found at the first node
-        else if (current->data == pos)
+        // case if list is empty
+        if (current->next == NULL && current->data != pos)
         {
-            head = current->next;
-            free(current);
+            printf("\nNode not found");
         }
 
-        // default case
+        // default case - multiple nodes
         else
         {
-            node *post = NULL;
-
-            while (current->next != NULL && current->data != pos)
-            {
-                current = current->next;
-                if (current->next != NULL)
-                {
-                    post = current->next;
-                }
-            }
-
-            // case if position not found in the list
-            if (current->next == NULL && current->data != pos)
-            {
-                printf("\nNode not found");
-            }
-            else
-            {
-                current->next = post->next;
-                free(post);
-            }
+            prev->next = current->next;
+            free(current);
         }
     }
 }
@@ -186,6 +174,10 @@ void display()
     if (head != NULL)
     {
         printf("\nHead: %d", head->data);
+    }
+    else
+    {
+        printf("Empty");
     }
 }
 
