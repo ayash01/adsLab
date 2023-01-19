@@ -1,89 +1,113 @@
-# include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define N 5
 
-int front, q[N], i, rear;
+int queue[N], front = -1, rear = -1;
 
-void enq() {
-    int data;
-    printf ("Enter data to insert: ");
-    scanf ("%d", &data);
-    if (rear == N - 1) {
-        printf("Queue is full.");
-    }
-    else if (front == -1 && rear == -1) {
-        front = rear = 0;
-        q[rear] = data;
-    }
-    else {
-        rear++;
-        q[rear] = data;
-    }
-}
+void enqueue()
+{
 
-void deq() {
-    if (front == -1 && rear == -1) {
-        printf("Underflow");   
+    // case if queue is full
+    if (rear == N - 1)
+    {
+        printf("Queue Full");
     }
-    else if (front == rear) {
-        front = rear = -1;
-    }
-    else {
-        printf ("Element dequeued: %d", q[front]);
-        front++;
-    }
-}
 
-void topf() {
-    if (front == -1 && rear == -1) {
-        printf ("Queue is empty");
-    }
-    else {
-        printf ("Top = %d", q[front]);
-    }
-}
+    else
+    {
+        int data;
+        printf("Enter data to enqueue: ");
+        scanf("%d", &data);
 
-void display() {
-    if (front == -1 && rear == -1) {
-        printf ("Queue is empty");
-    }
-    else {
-        for (i = front; i <= rear; i++) {
-            printf ("%d ", q[i]);
+        // case if queue is empty
+        if (front == -1 && rear == -1)
+        {
+            front = rear = 0;
+            queue[front] = data;
         }
+
+        // default case
+        else
+        {
+            rear++;
+            queue[rear] = data;
+        }
+        printf("\nElement %d enqueued.", data);
+    }
+}
+
+void dequeue()
+{
+    // case if queue empty
+    if (rear == -1) {
+        printf("Queue is empty");
+    }
+
+    else {
+        int e = queue[front];
+
+        // case when queue only has one element
+        if (front == rear) {
+            front = rear = -1;
+        }
+
+        // default case
+        else {
+            front++; 
+        }
+
+        printf("Element %d dequeued", e);
+    }
+}
+
+void display()
+{
+    // case if queue empty
+    if (rear == -1) {
+        printf("Queue is empty");
+    }
+
+    // default case
+    else {
+        printf("Current Queue:\n");
+        for (int i = front; i <= rear; i++) {
+            printf("%d  ", queue[i]);
+        }
+        printf("\nFront: %d\nRear: %d", queue[front], queue[rear]);
     }
 }
 
 void main()
 {
-	// choice
-	int ch;
-	do
-	{
-		printf("Enter choice:\n1. Enqueue\n2. Dequeue\n3. Top\n4. Display\n0: Exit\n");
-		printf("\n-> ");
-		scanf("%d", &ch);
-		printf("\n");
-		switch (ch)
-		{
-		case 1:
-			enq();
-			printf("\n");
-			break;
-		case 2:
-			deq();
-			printf("\n");
-			break;
-		case 3:
-			topf();
-			printf("\n");
-			break;
-		case 4:
-			display();
-			printf("\n");
-			break;
-		default:
-			printf("\n");
-		}
-	} while (ch != 0);
+    // choice
+    int ch;
+    do
+    {
+        printf("\n");
+        printf("Enter choice:\n1. Enqueue\n2. Dequeue\n\n3. Display\n\n0: Exit\n");
+        printf("\n-> ");
+        scanf("%d", &ch);
+        printf("\n");
+        switch (ch)
+        {
+        case 0:
+            printf("Exiting program...");
+            exit(0);
+        case 1:
+            enqueue();
+            printf("\n");
+            break;
+        case 2:
+            dequeue();
+            printf("\n");
+            break;
+        case 3:
+            display();
+            printf("\n");
+            break;
+        default:
+            printf("\n");
+        }
+    } while (ch != 0);
 }
