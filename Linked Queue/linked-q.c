@@ -1,70 +1,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node
-{
+typedef struct {
     int data;
-    struct node *next;
-};
+    void *next;
+} node;
 
-struct node *front = NULL, *rear = NULL;
+node *front = NULL, *rear = NULL;
 
-void enq()
-{
+void enqueue() {
     int data;
-    printf("Enter a number : ");
+    printf("Enter data to enqueue: ");
     scanf("%d", &data);
 
-    struct node *ptr = rear;
-    struct node *temp = (struct node *)malloc(sizeof(struct node));
-    temp->data = data;
-    temp->next = NULL;
+    node *new = (node *)malloc(sizeof(node));
+    new->data = data;
+    new->next = NULL;
 
-    if (rear == NULL)
-    {
-        front = temp;
-        rear = temp;
+    if (rear == NULL) {
+        front = new;
     }
-    else
-    {
-        rear->next = temp;
-        rear = temp;
+    else {
+        rear->next = new;  
     }
+
+    rear = new;
 }
 
-void deq()
-{
-    struct node *ptr = front, *temp = front;
-    if (temp == NULL)
-    {
-        printf("Underflow\n");
+void dequeue() {
+    
+    // case if queue is empty
+    if (front == NULL && rear == NULL) {
+        printf("Queue Empty");
     }
-    else
-    {
-        temp = temp->next;
-        front = temp;
+
+    // case if only one node present
+    else if (front == rear) {
+        node *ptr = front;
+
+        front = NULL;
+        rear = NULL;
+        free(ptr);
+    }
+
+    // default case
+    else {
+        node *ptr = front;
+
+        front = front->next;
         free(ptr);
     }
 }
 
-void display()
-{
-
-    struct node *temp = front;
-
-    if (temp == NULL)
-    {
-        printf("Queue empty\n");
+void display() {
+    if (front == NULL && rear == NULL) {
+        printf("Queue Empty");
     }
-    else
-    {
-        while (temp != NULL)
-        {
-            printf("%d\t", temp->data);
-            temp = temp->next;
+
+    else {
+        node *current = front;
+
+        printf("Current Queue:\n");
+
+        while (current != NULL) {
+            printf("%d  ", current->data);
+            current = current->next;
         }
-        printf("\n");
+
+        printf("\nFront: %d\nRear: %d", front->data, rear->data);
     }
+    
 }
 
 void main()
@@ -73,6 +78,7 @@ void main()
     int ch;
     do
     {
+        printf("\n");
         printf("Enter choice:\n1. Enqueue\n2. Dequeue\n3. Display\n0: Exit\n");
         printf("\n-> ");
         scanf("%d", &ch);
@@ -80,11 +86,11 @@ void main()
         switch (ch)
         {
         case 1:
-            enq();
+            enqueue();
             printf("\n");
             break;
         case 2:
-            deq();
+            dequeue();
             printf("\n");
             break;
         case 3:
