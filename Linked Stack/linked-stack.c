@@ -78,12 +78,15 @@ void main()
     do
     {
         printf("\n");
-        printf("Enter choice:\n1. Push\n2. Pop\n3. Top\n4. Display\n0: Exit\n");
+        printf("Enter choice:\n1. Push\n2. Pop\n3. Top\n\n4. Display\n\n0: Exit\n");
         printf("\n-> ");
         scanf("%d", &ch);
         printf("\n");
         switch (ch)
         {
+        case 0:
+            printf("Exiting program...");
+            exit(0);
         case 1:
             push();
             printf("\n");

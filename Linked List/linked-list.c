@@ -192,6 +192,9 @@ void main()
         printf("\n");
         switch (ch)
         {
+        case 0:
+            printf("Exiting program...");
+            exit(0);
         case 1:
             insertBeg();
             break;

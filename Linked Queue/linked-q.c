@@ -79,12 +79,15 @@ void main()
     do
     {
         printf("\n");
-        printf("Enter choice:\n1. Enqueue\n2. Dequeue\n3. Display\n0: Exit\n");
+        printf("Enter choice:\n1. Enqueue\n2. Dequeue\n3. Display\n\n0: Exit\n");
         printf("\n-> ");
         scanf("%d", &ch);
         printf("\n");
         switch (ch)
         {
+        case 0:
+            printf("Exiting program...");
+            exit(0);
         case 1:
             enqueue();
             printf("\n");
