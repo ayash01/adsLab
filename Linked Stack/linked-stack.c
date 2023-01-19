@@ -1,71 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node
-{
+typedef struct {
     int data;
-    struct node *next;
-};
+    void *next;
+} node;
 
-struct node *top = NULL;
+node *top = NULL;
 
-void push()
-{
-
+void push() {
     int data;
-    printf("Enter a number : ");
+    printf("Enter element to push into the stack: ");
     scanf("%d", &data);
 
-    struct node *temp = (struct node *)malloc(sizeof(struct node));
-    temp->data = data;
-    temp->next = NULL;
-    temp->next = top;
-    top = temp;
+    node *new = (node *)malloc(sizeof(node));
+    new->data = data;
+
+    if (top == NULL) {
+        new->next = NULL;
+    }
+
+    else {
+        new->next = top;
+    }
+
+    top = new;
 }
 
-void pop()
-{
-
-    struct node *ptr = top, *temp = top;
-    if (temp == NULL)
-    {
-        printf("Underflow!\n");
+void pop() {
+    if (top == NULL) {
+        printf("Stack underflow");
     }
-    else
-    {
-        temp = temp->next;
-        top = temp;
-        free(ptr);
-    }
-}
-void topf()
-{
-
-    struct node *temp = top;
-
-    if (temp == NULL)
-    {
-        printf("Linked list is empty\n");
-    }
-    else
-    {
-        printf("%d\n", temp->data);
-    }
-}
-void display()
-{
-    struct node *temp = top;
-
-    if (temp == NULL)
-        printf("Linked list is empty\n");
-    else
-    {
-        while (temp != NULL)
-        {
-            printf("%d\t", temp->data);
-            temp = temp->next;
+    else {
+        node *ptr = top;
+        if (top->next == NULL) {
+            top = NULL;
         }
-        printf("\n");
+        else {
+            top = top->next;
+        }
+        free(ptr);
+        printf("Top element popped");
+    }
+}
+
+void topf() {
+    if (top == NULL) {
+        printf("Stack Empty");
+    }
+    else {
+        printf("\nTop: %d", top->data);
+    }
+    
+}
+
+void display() {
+    if (top == NULL) {
+        printf("Stack Empty");
+    }
+
+    else {
+        node *current = top;
+
+        printf("Current Stack:\n");
+
+        while (current != NULL) {
+            printf("%d  ", current->data);
+            current = current->next;
+        }
     }
 }
 
@@ -75,6 +77,7 @@ void main()
     int ch;
     do
     {
+        printf("\n");
         printf("Enter choice:\n1. Push\n2. Pop\n3. Top\n4. Display\n0: Exit\n");
         printf("\n-> ");
         scanf("%d", &ch);
